@@ -1,4 +1,4 @@
-import ballerina/http;
+
 import ballerinax/mysql;
 import ballerinax/mysql.driver as _;
 import ballerina/graphql;
@@ -22,11 +22,6 @@ type Product record {|
     string material;
     float unit_price;
 |};
-
-table<Product> key(id) item_catalog = table [
-    {id: 1, title: "Product 1", description: "Product 1 description", includes: "Product 1 includes", inc_for: "Product 1 includes for", color: "Product 1 color", material: "Product 1 material", unit_price: 100.00},
-    {id: 2, title: "Product 2", description: "Product 2 description", includes: "Product 2 includes", inc_for: "Product 2 includes for", color: "Product 2 color", material: "Product 2 material", unit_price: 200.00}
-];
 
 public distinct service class PetstoreProduct {
     private final readonly & Product product;
@@ -70,11 +65,7 @@ public distinct service class PetstoreProduct {
 
 configurable DatabaseConfig dbConfigCKDB = ?;
 
-//mysql:Client mysqlEp = check new ();
-
-listener http:Listener httpListener = check new (9000);
-
-service /petstore on new graphql:Listener(httpListener) {
+service /petstore on new graphql:Listener(9000) {
 
     resource function get all() returns PetstoreProduct[]|error {
 
