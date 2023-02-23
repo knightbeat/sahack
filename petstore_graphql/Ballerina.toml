@@ -1,0 +1,13 @@
+[package]
+org = "ck"
+name = "petstore"
+version = "0.1.0"
+distribution = "2201.3.2"
+
+[build-options]
+observabilityIncluded = true
+
+[[dependency]]
+org = "ballerinax"
+name = "mysql"
+version = "1.4.1"
