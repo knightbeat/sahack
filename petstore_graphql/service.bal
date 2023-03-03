@@ -3,6 +3,7 @@ import ballerinax/mysql;
 import ballerinax/mysql.driver as _;
 import ballerina/graphql;
 import ballerina/sql;
+import ballerina/http;
 
 type DatabaseConfig record {|
     string host;
@@ -65,6 +66,15 @@ public distinct service class PetstoreProduct {
 
 configurable DatabaseConfig dbConfigCKDB = ?;
 
+@http:ServiceConfig {
+    cors: {
+        allowOrigins: ["http://localhost:3000"],
+        allowCredentials: false,
+        allowHeaders: ["Authorization", "Content-Type", "SOAPAction"],
+        exposeHeaders: ["Content-Length", "Content-Type"],
+        maxAge: 86400
+    }
+}
 service /petstore on new graphql:Listener(9000) {
 
     resource function get all() returns PetstoreProduct[]|error {
