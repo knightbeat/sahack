@@ -18,8 +18,8 @@ root.render(
         config={ {
             signInRedirectURL: "http://localhost:3000",
             signOutRedirectURL: "http://localhost:3000",
-            clientID: "Ccfhtck83lyLkwUdRD8GwXjfwWUa",
-            baseUrl: "https://api.asgardeo.io/t/chathurakulasinghe",
+            clientID: "",
+            baseUrl: "",
             scope: [ "openid","profile" ]
         } }
     >
